@@ -1,6 +1,7 @@
 import http from "./httpService";
+import { getJwt } from "./authService";
 
-const apiEndpoint = "/camgrounds";
+const apiEndpoint = "/campgrounds";
 
 function campURL(id) {
   return `${apiEndpoint}/${id}`;
@@ -18,11 +19,16 @@ export function saveCamp(camp) {
   if (camp._id) {
     const body = { ...camp };
     delete body._id;
-    return http.put(campURL(camp._id), body);
+    return http.put(campURL(camp._id), body, {
+      headers: { "x-auth-token": getJwt() }
+    });
   }
-  return http.post(apiEndpoint, camp);
+  return http.post(apiEndpoint, camp, {
+    headers: { "x-auth-token": getJwt() }
+  });
 }
-
 export function deleteCamp(campID) {
-  return http.delete(campURL(campID));
+  return http.delete(campURL(campID), {
+    headers: { "x-auth-token": getJwt() }
+  });
 }

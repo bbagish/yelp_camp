@@ -7,7 +7,6 @@ import FormCard from "./commons/FormCard";
 
 class RegisterForm extends Form {
   state = {
-    //needs to have some kind of value
     data: { username: "", password: "", name: "" },
     errors: {}
   };
@@ -39,19 +38,6 @@ class RegisterForm extends Form {
       }
     }
   };
-  // render() {
-  //   return (
-  //     <div>
-  //       <h1>Register</h1>
-  //       <form onSubmit={this.handleSubmit}>
-  //         {this.renderInput("username", "Username")}
-  //         {this.renderInput("password", "Password", "password")}
-  //         {this.renderInput("name", "Name")}
-  //         {this.renderButton("Register")}
-  //       </form>
-  //     </div>
-  //   );
-  // }
   render() {
     return (
       <FormCard label="Sign Up">

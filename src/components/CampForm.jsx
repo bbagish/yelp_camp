@@ -8,7 +8,7 @@ class CampForm extends Form {
   state = {
     data: {
       name: "",
-      price: null,
+      price: "",
       image: "",
       description: ""
     },
@@ -64,13 +64,6 @@ class CampForm extends Form {
           {this.renderInput("price", "Price")}
           {this.renderInput("image", "Image")}
           {this.renderInput("description", "Description")}
-          {/* <div class="form-group">
-            <textarea
-              class="form-control"
-              placeholder="Description..."
-              rows="3"
-            />
-          </div> */}
           <button className="btn btn-lg btn-primary btn-block" type="submit">
             Submit
           </button>

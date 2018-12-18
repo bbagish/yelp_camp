@@ -1,17 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Card from "./Card";
 
 const Cards = ({ id, image, name, price }) => {
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6 mb-4">
+    <div className="col-lg-3 col-md-4 col-sm-6 mb-4 camp">
       <Link
+        className={name}
         to={`/campgrounds/${id}/show`}
         style={{ color: "black", outline: "none", textDecoration: "none" }}
       >
-        <div
-          className="card"
-          style={{ borderStyle: "solid", borderColor: "transparent" }}
-        >
+        <Card>
           <img
             className="card-img-top"
             style={{ height: "150px" }}
@@ -30,7 +29,7 @@ const Cards = ({ id, image, name, price }) => {
               ${price} per night · Free cancellation
             </p>
           </div>
-        </div>
+        </Card>
       </Link>
     </div>
   );

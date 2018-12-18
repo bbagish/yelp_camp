@@ -27,10 +27,10 @@ const NavBar = ({ user, searchQuery, handleSearch }) => {
         )}
         {user && (
           <React.Fragment>
-            <NavLink className="p-2 mr-2" to="/profile">
+            <NavLink className="p-2 mr-2 profile" to="/profile">
               {user.name}
             </NavLink>
-            <NavLink className="p-2" to="/logout">
+            <NavLink className="p-2 logout" to="/logout">
               Logout
             </NavLink>
           </React.Fragment>

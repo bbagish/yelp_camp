@@ -9,6 +9,7 @@ import CampForm from "./components/CampForm";
 import RegisterForm from "./components/RegisterForm";
 import auth from "./services/authService";
 import ProtectedRoute from "./components/commons/protectedRoute";
+import Profile from "./components/Profile";
 
 class App extends Component {
   state = {};
@@ -28,6 +29,10 @@ class App extends Component {
             <Route path="/register" component={RegisterForm} />
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
+            <ProtectedRoute
+              path="/profile"
+              render={props => <Profile {...props} user={user} />}
+            />
             <Route path="/campgrounds/:id/show" component={Campground} />
             <ProtectedRoute path="/campgrounds/:id" component={CampForm} />
             <Route
