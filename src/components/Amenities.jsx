@@ -17,7 +17,7 @@ const Amenities = () => {
       <div className="row">
         {list.map((currElement, index) => {
           return (
-            <React.Fragment>
+            <React.Fragment key={index}>
               <div className="col-lg-3 col-md-6 col-sm-12">{currElement}</div>
               {isEven(index + 1) && <div className="w-100" />}
             </React.Fragment>

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { toast } from "react-toastify";
+import { getCamps } from "../services/campService";
 import Jumbotron from "./Jumbotron";
 import Grid from "./Grid";
-import { getCamps, deleteCamp } from "../services/campService";
 
 class Campgrounds extends Component {
   state = {
@@ -14,34 +13,9 @@ class Campgrounds extends Component {
     this.setState({ camps });
   }
 
-  handleDelete = async camp => {
-    const originalCamps = this.state.camps;
-    const camps = originalCamps.filter(c => c._id !== camp._id);
-    this.setState({ camps });
-    try {
-      await deleteCamp(camp._id);
-    } catch (ex) {
-      if (ex.response && ex.response.status === 404) {
-        toast.error("This camp has already been deleted.");
-      }
-    }
-    this.setState({ originalCamps });
-  };
-
-  getPagedData = () => {
-    const { searchQuery, camps: allCamps } = this.state;
-    let filtered = allCamps;
-    if (searchQuery) {
-      filtered = allCamps.filter(c =>
-        c.name.toLowerCase().startsWith(searchQuery.toLowerCase())
-      );
-    }
-    const camps = filtered;
-    return { totalCount: filtered.length, data: camps };
-  };
   render() {
     const { user } = this.props;
-    const { data: camps } = this.getPagedData();
+    const { camps } = this.state;
     return (
       <React.Fragment>
         <Jumbotron user={user} />

@@ -18,7 +18,7 @@ const Cards = ({ id, image, name, price }) => {
             alt={name}
           />
           <span
-            class="mt-1"
+            className="mt-1"
             style={{ color: "rgb(78, 65, 38)", fontSize: "12px" }}
           >
             ENTIRE PLACE

@@ -3,6 +3,9 @@ import Joi from "joi-browser";
 import Form from "./commons/Form";
 import FormCard from "./commons/FormCard";
 import { getCamp, saveCamp } from "../services/campService";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class CampForm extends Form {
   state = {
@@ -52,13 +55,20 @@ class CampForm extends Form {
   }
 
   doSubmit = async () => {
-    await saveCamp(this.state.data);
+    try {
+      await saveCamp(this.state.data);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 401) {
+        return toast.error("You don't have permission to do that.");
+      }
+    }
     this.props.history.push("/campgrounds");
   };
 
   render() {
     return (
       <FormCard label="Add New Camp">
+        <ToastContainer autoClose={2000} />
         <form className="form-signin" onSubmit={this.handleSubmit}>
           {this.renderInput("name", "Camp Name")}
           {this.renderInput("price", "Price")}
